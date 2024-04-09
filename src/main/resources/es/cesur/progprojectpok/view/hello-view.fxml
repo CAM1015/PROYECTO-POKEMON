@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+
+<AnchorPane maxHeight="550.0" maxWidth="855.0" minHeight="550.0" minWidth="700.0" prefHeight="550.0" prefWidth="855.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.cesur.progprojectpok.controllers.HelloController">
+   <children>
+   
+             <Label fx:id="welcomeText" layoutX="26.0" layoutY="21.0" text="Opciones" />
+       <Button fx:id="btnHello" layoutX="313.0" layoutY="464.0" onAction="#onHelloButtonClick" prefHeight="56.0" prefWidth="210.0" text="Hello!" />
+      <ComboBox fx:id="comboBoxColores" layoutX="33.0" layoutY="275.0" prefWidth="150.0" />
+      <ImageView fx:id="imgViewEjemplo" fitHeight="150.0" fitWidth="200.0" layoutX="356.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </ImageView>
+      <ProgressBar fx:id="progressBar" layoutX="34.0" layoutY="329.0" prefWidth="200.0" progress="0.0" />
+      <ListView fx:id="listView" layoutX="641.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0">
+         <effect>
+            <DropShadow />
+         </effect></ListView>
+      <TableView fx:id="tableView" layoutX="641.0" layoutY="241.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="imageColumn" prefWidth="75.0" text="image" />
+          <TableColumn fx:id="nameColumn" prefWidth="75.0" text="name" />
+        </columns>
+      </TableView>
+      <Label fx:id="lblComunidades" alignment="CENTER" layoutX="34.0" layoutY="58.0" prefHeight="56.0" prefWidth="341.0" style="-fx-background-color: RED; -fx-border-color: black;" text="Comunidades autónomas" textAlignment="RIGHT">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtFieldEmail" layoutX="33.0" layoutY="143.0" prefHeight="43.0" prefWidth="267.0" text="mig@email.es">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+      <CheckBox fx:id="checkBoxAceptar" layoutX="126.0" layoutY="211.0" mnemonicParsing="false" selected="true" text="Aceptar acuerdo legal" />
+   </children>
+</AnchorPane>
