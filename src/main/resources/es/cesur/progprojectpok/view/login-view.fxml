@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="736.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.cesur.progprojectpok.controllers.LoginController">
+<AnchorPane prefHeight="736.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.cesur.progprojectpok.controllers.LoginController">
    <children>
       <ImageView fitHeight="746.0" fitWidth="745.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -68,6 +67,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </CheckBox>
+            <Label layoutX="558.0" layoutY="6.0" text="Label" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="28.0" layoutY="557.0" opacity="0.9" prefHeight="170.0" prefWidth="690.0" style="-fx-background-color: lightblue;" />
