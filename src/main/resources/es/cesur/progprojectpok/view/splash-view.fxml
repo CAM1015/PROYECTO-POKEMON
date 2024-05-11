@@ -12,7 +12,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.effect.Reflection?>
 
-<AnchorPane fx:id="anchorPanePpal" prefHeight="760.0" prefWidth="762.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.cesur.progprojectpok.controllers.SplashController">
+<AnchorPane fx:id="anchorPanePpal" prefHeight="760.0" prefWidth="750.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.cesur.progprojectpok.controllers.SplashController">
    <children>
       <ImageView fx:id="imageViewEntrenador" fitHeight="742.0" fitWidth="419.0" layoutX="22.0" layoutY="26.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
          <image>

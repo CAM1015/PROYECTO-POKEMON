@@ -28,4 +28,24 @@ public class UserManager {
         }
         return result;
     }
+
+
+    public Boolean deleteUser(User user){
+        Boolean result = false;
+        result = userService.deleteUser(user);
+        if(user != null){
+            return true;
+        }
+        return result;
+    }
+
+
+    public Boolean updateUser(User user){
+        Boolean result = false;
+        result = userService.updateUser(user);
+        if(user != null){
+            return true;
+        }
+        return result;
+    }
 }

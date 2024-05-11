@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="550.0" maxWidth="855.0" minHeight="550.0" minWidth="700.0" prefHeight="550.0" prefWidth="855.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.cesur.progprojectpok.controllers.HelloController">
+<AnchorPane maxHeight="550.0" maxWidth="855.0" minHeight="550.0" minWidth="700.0" prefHeight="550.0" prefWidth="855.0"
+            xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="es.cesur.progprojectpok.controllers.HelloController">
    <children>
    
              <Label fx:id="welcomeText" layoutX="26.0" layoutY="21.0" text="Opciones" />
@@ -45,5 +42,7 @@
          </opaqueInsets>
       </TextField>
       <CheckBox fx:id="checkBoxAceptar" layoutX="126.0" layoutY="211.0" mnemonicParsing="false" selected="true" text="Aceptar acuerdo legal" />
+      <Button fx:id="btnSaveDB" layoutX="34.0" layoutY="381.0" mnemonicParsing="false" onAction="#onActionBtnSaveDB" prefHeight="43.0" prefWidth="164.0" text="SaveDB" />
+      <Button layoutX="224.0" layoutY="381.0" mnemonicParsing="false" onAction="#onActionBtnLoadDB" prefHeight="43.0" prefWidth="210.0" text="LoadDB" />
    </children>
 </AnchorPane>

@@ -41,4 +41,11 @@ public class UserService {
         return userDao.findByUsernameAndPassword(username,password);
     }
 
+    public Boolean deleteUser(User user) {
+        return userDao.deleteUser(user.getUserId());
+    }
+
+    public Boolean updateUser(User user) {
+        return userDao.updateUser(user);
+    }
 }

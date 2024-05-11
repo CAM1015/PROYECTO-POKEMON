@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="827.0" prefWidth="824.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.cesur.progprojectpok.controllers.Menu2Controller">
+   <children>
+      <ImageView fitHeight="827.0" fitWidth="929.0" opacity="0.36" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/fondobosque.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="134.0" layoutY="110.0" prefHeight="539.0" prefWidth="559.0" style="-fx-background-color: lightblue;">
+         <children>
+            <Button layoutX="143.0" layoutY="421.0" mnemonicParsing="false" onAction="#onActionBtnLogin" prefHeight="60.0" prefWidth="266.0" text="LOGIN">
+               <font>
+                  <Font size="34.0" />
+               </font>
+            </Button>
+            <TextField fx:id="txtFieldUsername" layoutX="195.0" layoutY="125.0" prefHeight="40.0" prefWidth="272.0" promptText="USERNAME" />
+            <PasswordField fx:id="passField" layoutX="195.0" layoutY="174.0" prefHeight="42.0" prefWidth="272.0" promptText="PASSWORD" />
+            <Label layoutX="68.0" layoutY="128.0" text="Username">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="71.0" layoutY="180.0" text="Password">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

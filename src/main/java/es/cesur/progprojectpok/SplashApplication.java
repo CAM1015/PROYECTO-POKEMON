@@ -22,7 +22,7 @@ public class SplashApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(SplashApplication.class.getResource("view/splash-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(SplashApplication.class.getResource("es/cesur/progprojectpok/view/splash-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 760, 750);
         scene.getStylesheets().add(getClass().getResource("styles/styles.css").toExternalForm());
         stage.setTitle("Welcome");

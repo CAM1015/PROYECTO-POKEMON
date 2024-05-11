@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 07-04-2024 a las 19:02:00
--- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.2.0
+-- Servidor: localhost
+-- Tiempo de generación: 11-05-2024 a las 19:27:24
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,50 +18,271 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `proyecto_pok`
+-- Base de datos: `proyectopokemon`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `user`
+-- Estructura de tabla para la tabla `COMBATE`
 --
 
-CREATE TABLE `user` (
-  `USERID` int(11) NOT NULL,
-  `USERNAME` varchar(30) NOT NULL,
-  `PASSWORD` varchar(30) NOT NULL,
-  `REMEMBERME` tinyint(1) DEFAULT NULL,
-  `EMAIL` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+CREATE TABLE `COMBATE` (
+  `ID_COMBATE` int(11) NOT NULL,
+  `FECHA_HORA` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `ID_ENTRENADOR` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+-- --------------------------------------------------------
 
 --
--- Volcado de datos para la tabla `user`
+-- Estructura de tabla para la tabla `ENTRENADOR`
 --
 
-INSERT INTO `user` (`USERID`, `USERNAME`, `PASSWORD`, `REMEMBERME`, `EMAIL`) VALUES
-(1, 'miguel', '1234', 1, 'miguel2@email.es'),
-(2, 'angel', '1234', 1, 'angel@email.es');
+CREATE TABLE `ENTRENADOR` (
+  `ID_ENTRENADOR` int(11) NOT NULL,
+  `NOM_ENTRENADOR` varchar(20) NOT NULL,
+  `PASS` varchar(20) NOT NULL,
+  `POKEDOLLARS` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `ENTRENADOR`
+--
+
+INSERT INTO `ENTRENADOR` (`ID_ENTRENADOR`, `NOM_ENTRENADOR`, `PASS`, `POKEDOLLARS`) VALUES
+(1, 'Claudia', '12345', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `MOCHILA`
+--
+
+CREATE TABLE `MOCHILA` (
+  `ID_ENTRENADOR` int(11) NOT NULL,
+  `ID_OBJETO` int(11) NOT NULL,
+  `NUM_OBJETO` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `MOVIMIENTOS`
+--
+
+CREATE TABLE `MOVIMIENTOS` (
+  `ID_MOVIMIENTO` int(11) NOT NULL,
+  `POTENCIA` int(11) NOT NULL,
+  `TIPO` varchar(20) NOT NULL,
+  `ESTADO` varchar(20) NOT NULL,
+  `QUITA` int(11) NOT NULL,
+  `TURNOS` int(11) NOT NULL,
+  `MEJORA` varchar(20) NOT NULL,
+  `CANT_MEJORA` int(11) NOT NULL,
+  `NIVEL_APRENDIZAJE` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `MOVIMIENTOS_POKEMON`
+--
+
+CREATE TABLE `MOVIMIENTOS_POKEMON` (
+  `ID_MOVIMIENTOS` int(11) NOT NULL,
+  `ID_POKEMON` int(11) NOT NULL,
+  `ACTIVO` char(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `OBJETO`
+--
+
+CREATE TABLE `OBJETO` (
+  `ID_OBJETO` int(11) NOT NULL,
+  `NOMBRE` text NOT NULL,
+  `ATAQUE` int(11) NOT NULL,
+  `AT_ESPECIAL` int(11) NOT NULL,
+  `DEFENSA` int(11) NOT NULL,
+  `DEF_ESPECIAL` int(11) NOT NULL,
+  `VELOCIDAD` int(11) NOT NULL,
+  `PRECIO` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `POKEDEX`
+--
+
+CREATE TABLE `POKEDEX` (
+  `NUM_POKEDEX` int(11) NOT NULL,
+  `NOM_POKEMON` varchar(30) NOT NULL,
+  `TIPO1` varchar(20) NOT NULL,
+  `TIPO2` varchar(20) NOT NULL,
+  `IMAGEN` varchar(200) NOT NULL,
+  `SONIDO` varchar(200) NOT NULL,
+  `NIVEL_EVOLUCION` int(11) NOT NULL,
+  `NUM_POKEDEX_EVO` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `POKEDEX`
+--
+
+INSERT INTO `POKEDEX` (`NUM_POKEDEX`, `NOM_POKEMON`, `TIPO1`, `TIPO2`, `IMAGEN`, `SONIDO`, `NIVEL_EVOLUCION`, `NUM_POKEDEX_EVO`) VALUES
+(1, 'Bulbasaur', 'Planta', 'Veneno', '/Users/claudiaalonso/Library/Mobile Documents/com~apple~CloudDocs/CESUR/DAW 1°/POKEMON/PROG-PROJECT-POK/src/main/resources/es/cesur/progprojectpok/images/pokemon/001.png', 'por_definir', 16, 2),
+(2, 'Ivysaur', 'Planta', 'Veneno', '/Users/claudiaalonso/Library/Mobile Documents/com~apple~CloudDocs/CESUR/DAW 1°/POKEMON/PROG-PROJECT-POK/src/main/resources/es/cesur/progprojectpok/images/pokemon/002.png', 'por_definir', 32, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `POKEMON`
+--
+
+CREATE TABLE `POKEMON` (
+  `ID_POKEMON` int(11) NOT NULL,
+  `NUM_POKEDEX` int(11) NOT NULL,
+  `ID_ENTRENADOR` int(11) NOT NULL,
+  `MOTE` varchar(30) NOT NULL,
+  `CAJA` int(11) NOT NULL,
+  `ATAQUE` int(11) NOT NULL,
+  `AT_ESPECIAL` int(11) NOT NULL,
+  `DEFENSA` int(11) NOT NULL,
+  `DEF_ESPECIAL` int(11) NOT NULL,
+  `VELOCIDAD` int(11) NOT NULL,
+  `FERTILIDAD` int(11) NOT NULL,
+  `SEXO` char(1) NOT NULL,
+  `ESTADO` varchar(20) NOT NULL,
+  `EXPERIENCIA` int(11) NOT NULL,
+  `VITALIDAD` int(11) NOT NULL,
+  `ID_OBJETO` int(11) NOT NULL,
+  `NIVEL` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `POKEMON`
+--
+
+INSERT INTO `POKEMON` (`ID_POKEMON`, `NUM_POKEDEX`, `ID_ENTRENADOR`, `MOTE`, `CAJA`, `ATAQUE`, `AT_ESPECIAL`, `DEFENSA`, `DEF_ESPECIAL`, `VELOCIDAD`, `FERTILIDAD`, `SEXO`, `ESTADO`, `EXPERIENCIA`, `VITALIDAD`, `ID_OBJETO`, `NIVEL`) VALUES
+(1, 1, 1, 'Pepe', 1, 1, 1, 1, 1, 1, 1, 'M', '', 1, 1, 1, 0),
+(2, 1, 1, 'Maria', 1, 2, 2, 2, 2, 2, 2, 'H', '', 2, 2, 2, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `TURNO`
+--
+
+CREATE TABLE `TURNO` (
+  `ID_TURNO` int(11) NOT NULL,
+  `ACCION_ENTRENADOR` varchar(150) NOT NULL,
+  `ACCION_RIVAL` varchar(150) NOT NULL,
+  `ID_COMBATE` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `user`
+-- Indices de la tabla `COMBATE`
 --
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`USERID`);
+ALTER TABLE `COMBATE`
+  ADD PRIMARY KEY (`ID_COMBATE`),
+  ADD KEY `FK_ID_ENTRENADOR` (`ID_ENTRENADOR`) USING BTREE;
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- Indices de la tabla `ENTRENADOR`
+--
+ALTER TABLE `ENTRENADOR`
+  ADD PRIMARY KEY (`ID_ENTRENADOR`);
+
+--
+-- Indices de la tabla `MOCHILA`
+--
+ALTER TABLE `MOCHILA`
+  ADD PRIMARY KEY (`ID_ENTRENADOR`,`ID_OBJETO`),
+  ADD KEY `FK_ID_OBJETO` (`ID_OBJETO`);
+
+--
+-- Indices de la tabla `MOVIMIENTOS`
+--
+ALTER TABLE `MOVIMIENTOS`
+  ADD PRIMARY KEY (`ID_MOVIMIENTO`);
+
+--
+-- Indices de la tabla `MOVIMIENTOS_POKEMON`
+--
+ALTER TABLE `MOVIMIENTOS_POKEMON`
+  ADD PRIMARY KEY (`ID_MOVIMIENTOS`),
+  ADD KEY `FK_ID_POKEMON` (`ID_POKEMON`);
+
+--
+-- Indices de la tabla `OBJETO`
+--
+ALTER TABLE `OBJETO`
+  ADD PRIMARY KEY (`ID_OBJETO`);
+
+--
+-- Indices de la tabla `POKEDEX`
+--
+ALTER TABLE `POKEDEX`
+  ADD PRIMARY KEY (`NUM_POKEDEX`);
+
+--
+-- Indices de la tabla `POKEMON`
+--
+ALTER TABLE `POKEMON`
+  ADD PRIMARY KEY (`ID_POKEMON`),
+  ADD KEY `FK_NUM_POKEDEX` (`NUM_POKEDEX`),
+  ADD KEY `FK_ID_ENTRENADO` (`ID_ENTRENADOR`);
+
+--
+-- Indices de la tabla `TURNO`
+--
+ALTER TABLE `TURNO`
+  ADD PRIMARY KEY (`ID_TURNO`),
+  ADD KEY `FK_ID_COMBATE` (`ID_COMBATE`);
+
+--
+-- Restricciones para tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `user`
+-- Filtros para la tabla `COMBATE`
 --
-ALTER TABLE `user`
-  MODIFY `USERID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `COMBATE`
+  ADD CONSTRAINT `FK_ID_ENTRENADOR` FOREIGN KEY (`ID_ENTRENADOR`) REFERENCES `ENTRENADOR` (`ID_ENTRENADOR`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `MOCHILA`
+--
+ALTER TABLE `MOCHILA`
+  ADD CONSTRAINT `FK_ID_OBJETO` FOREIGN KEY (`ID_OBJETO`) REFERENCES `OBJETO` (`ID_OBJETO`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `MOVIMIENTOS_POKEMON`
+--
+ALTER TABLE `MOVIMIENTOS_POKEMON`
+  ADD CONSTRAINT `FK_ID_MOVIMIENTO` FOREIGN KEY (`ID_MOVIMIENTOS`) REFERENCES `MOVIMIENTOS` (`ID_MOVIMIENTO`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_ID_POKEMON` FOREIGN KEY (`ID_POKEMON`) REFERENCES `POKEMON` (`ID_POKEMON`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `POKEMON`
+--
+ALTER TABLE `POKEMON`
+  ADD CONSTRAINT `FK_ID_ENTRENADO` FOREIGN KEY (`ID_ENTRENADOR`) REFERENCES `ENTRENADOR` (`ID_ENTRENADOR`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_NUM_POKEDEX` FOREIGN KEY (`NUM_POKEDEX`) REFERENCES `POKEDEX` (`NUM_POKEDEX`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `TURNO`
+--
+ALTER TABLE `TURNO`
+  ADD CONSTRAINT `FK_ID_COMBATE` FOREIGN KEY (`ID_COMBATE`) REFERENCES `COMBATE` (`ID_COMBATE`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

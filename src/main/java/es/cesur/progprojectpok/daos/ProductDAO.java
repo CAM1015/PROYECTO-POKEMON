@@ -1,8 +1,7 @@
 package es.cesur.progprojectpok.daos;
 
 import es.cesur.progprojectpok.database.HibernateSessionFactoryUtil;
-import es.cesur.progprojectpok.model.User;
-import es.cesur.progprojectpok.utils.UtilsFicheros;
+import es.cesur.progprojectpok.model.Product;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -10,9 +9,9 @@ import org.hibernate.query.Query;
 import java.io.Serializable;
 import java.util.List;
 
-public class UserDAO {
+public class ProductDAO {
 
-    public UserDAO() {
+    public ProductDAO() {
     }
 
     /**
@@ -21,8 +20,8 @@ public class UserDAO {
      * @param id El identificador del usuario.
      * @return El usuario encontrado, o null si no se encuentra.
      */
-    public User findById(int id) {
-        User user = HibernateSessionFactoryUtil.getSessionFactory().openSession().get(User.class, id);
+    public Product findById(int id) {
+        Product user = HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Product.class, id);
         return user;
     }
 
@@ -32,7 +31,7 @@ public class UserDAO {
      * @param user El usuario a guardar.
      * @return True si el usuario se ha guardado con éxito, false en caso contrario.
      */
-    public Boolean save(User user) {
+    public Boolean save(Product user) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         Serializable serializable = session.save(user);
@@ -42,7 +41,7 @@ public class UserDAO {
         return serializable != null;
     }
 
-/*    public void update(User user) {
+/*    public void update(Product user) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         session.update(user);
@@ -50,7 +49,7 @@ public class UserDAO {
         session.close();
     }*/
 
-/*    public void delete(User user) {
+/*    public void delete(Product user) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         session.delete(user);
@@ -58,8 +57,8 @@ public class UserDAO {
         session.close();
     }*/
 
-/*    public List<User> findAll() {
-        List<User> users = (List<User>) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From User").list();
+/*    public List<Product> findAll() {
+        List<Product> users = (List<Product>) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From Product").list();
         return users;
     }*/
 
@@ -70,14 +69,14 @@ public class UserDAO {
      * @param password La contraseña.
      * @return El usuario encontrado que coincide con el nombre de usuario y contraseña proporcionados, o null si no se encuentra ninguno.
      */
-    public User findByUsernameAndPassword(String username, String password) {
+    public Product findByProductnameAndPassword(String username, String password) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         try {
-            String hql = "FROM User WHERE username = :username AND password = :password";
+            String hql = "FROM Product WHERE username = :username AND password = :password";
             Query query = session.createQuery(hql);
             query.setParameter("username", username);
             query.setParameter("password", password);
-            List<User> result = query.list();
+            List<Product> result = query.list();
             if (!result.isEmpty()) {
                 return result.get(0); // Retorna el primer usuario que coincida (debería ser único)
             }
@@ -87,11 +86,11 @@ public class UserDAO {
         }
     }
 
-    public Boolean updateUser(User user) {
+    public Boolean updateProduct(Product user) {
         return true;
     }
 
-    public Boolean deleteUser(Integer userId) {
+    public Boolean deleteProduct(Integer userId) {
 
         return true;
     }
