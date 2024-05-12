@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -38,20 +37,143 @@ public class MenuController implements Initializable {
     private Button btnCrianza;
 
     @FXML
-    private Button btnLogOut;
-
-    @FXML
     private Button btnCentroPokemon;
 
     @FXML
     private Button btnEntrenamiento;
 
-
-
+    @FXML
+    private Button btnLogOut;
 
 
     @FXML
-    protected void onLogOutClick() {
+    protected void onCombateBtnClick() {
+        try {
+            Stage Newstage = new Stage();
+
+            FXMLLoader fxmlLoader = new FXMLLoader(SplashApplication.class.getResource("/es/cesur/progprojectpok/view/combate-view.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load(), 751, 475);
+            Newstage.setTitle("Combate");
+            Newstage.setScene(scene);
+            Newstage.show();
+
+            Stage loginStage = (Stage) btnCombate.getScene().getWindow();
+            loginStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    protected void onEquipoBtnClick() {
+        try {
+            Stage Newstage = new Stage();
+
+            FXMLLoader fxmlLoader = new FXMLLoader(SplashApplication.class.getResource("/es/cesur/progprojectpok/view/equipo-view.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load(), 751, 475);
+            Newstage.setTitle("Equipo");
+            Newstage.setScene(scene);
+            Newstage.show();
+
+            Stage loginStage = (Stage) btnEquipo.getScene().getWindow();
+            loginStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    protected void onEntrenamientoBtnClick() {
+        try {
+            Stage Newstage = new Stage();
+
+            FXMLLoader fxmlLoader = new FXMLLoader(SplashApplication.class.getResource("/es/cesur/progprojectpok/view/entrenamiento-view.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load(), 751, 475);
+            Newstage.setTitle("Entrenamiento");
+            Newstage.setScene(scene);
+            Newstage.show();
+
+            Stage loginStage = (Stage) btnEntrenamiento.getScene().getWindow();
+            loginStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    protected void onCapturaBtnClick() {
+        try {
+            Stage Newstage = new Stage();
+
+            FXMLLoader fxmlLoader = new FXMLLoader(SplashApplication.class.getResource("/es/cesur/progprojectpok/view/captura-view.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load(), 751, 475);
+            Newstage.setTitle("Captura");
+            Newstage.setScene(scene);
+            Newstage.show();
+
+            Stage loginStage = (Stage) btnCaptura.getScene().getWindow();
+            loginStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    protected void onCentroPokemonBtnClick() {
+        try {
+            Stage Newstage = new Stage();
+
+            FXMLLoader fxmlLoader = new FXMLLoader(SplashApplication.class.getResource("/es/cesur/progprojectpok/view/centropokemon-view.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load(), 751, 475);
+            Newstage.setTitle("CentroPokemon");
+            Newstage.setScene(scene);
+            Newstage.show();
+
+            Stage loginStage = (Stage) btnCentroPokemon.getScene().getWindow();
+            loginStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    protected void onCrianzaBtnClick() {
+        try {
+            Stage Newstage = new Stage();
+
+            FXMLLoader fxmlLoader = new FXMLLoader(SplashApplication.class.getResource("/es/cesur/progprojectpok/view/crianza-view.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load(), 751, 475);
+            Newstage.setTitle("Crianza");
+            Newstage.setScene(scene);
+            Newstage.show();
+
+            Stage loginStage = (Stage) btnCrianza.getScene().getWindow();
+            loginStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    protected void onLogOutBtnClick() {
         try {
 
             Stage Newstage = new Stage();
@@ -62,13 +184,17 @@ public class MenuController implements Initializable {
             Newstage.setTitle("LogIn");
             Newstage.setScene(scene);
             Newstage.show();
+
+            Stage loginStage = (Stage) btnLogOut.getScene().getWindow();
+            loginStage.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Cargar datos del usuario si seleccionó el remember me
+
 
 
     }
