@@ -1,5 +1,8 @@
 package es.cesur.progprojectpok.model;
 
+
+import javafx.collections.ObservableList;
+
 import java.util.LinkedList;
 
 public class Entrenador {

@@ -4,26 +4,20 @@ package es.cesur.progprojectpok.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "USER")
+@Table(name = "ENTRENADOR")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
-    @Column (name = "USERNAME")
+    @Column (name = "NOM_ENTRENADOR")
     private String username;
-    @Column (name = "PASSWORD")
+    @Column (name = "PASS")
     private String password;
-    @Column (name = "REMEMBERME")
-    private Boolean rememberMe;
-    @Column (name = "EMAIL")
-    private String email;
 
-    public User(String username, String password, Boolean rememberMe, String email) {
+    public User(String username, String password) {
 
         this.username = username;
         this.password = password;
-        this.rememberMe = rememberMe;
-        this.email = email;
     }
 
     public User(){}
@@ -52,19 +46,4 @@ public class User {
         this.password = password;
     }
 
-    public Boolean getRememberMe() {
-        return rememberMe;
-    }
-
-    public void setRememberMe(Boolean rememberMe) {
-        this.rememberMe = rememberMe;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

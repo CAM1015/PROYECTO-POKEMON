@@ -21,7 +21,7 @@ public enum Estado {
 
     private final String nombre;
 
-    Estado (String nombre){
+    Estado (String nombre) {
         this.nombre = nombre;
     }
 

@@ -31,10 +31,7 @@ public class Pokemon {
     private String imgFrontal;
     private String imgTrasera;
 
-    /**
-     * Constructor por defecto.
-     *
-     */
+
     public Pokemon() {
         super();
         this.idPokemon = 0;
@@ -51,7 +48,7 @@ public class Pokemon {
         this.defensaEspecial = 1;
         this.velocidad = 1;
         this.fertilidad = 5;
-        this.sexo = true;    // asumimos que true es macho
+        this.sexo = true;    //true es macho
         this.movimientos = null;
         this.tipo1 = null;
         this.tipo2 = null;

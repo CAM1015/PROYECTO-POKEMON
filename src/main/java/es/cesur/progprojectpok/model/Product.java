@@ -16,12 +16,12 @@ public class Product {
     /**
      * Constructor de la clase Product.
      *
-     * @param id El identificador único del producto.
-     * @param name El nombre del producto.
+     * @param id          El identificador único del producto.
+     * @param name        El nombre del producto.
      * @param description La descripción del producto.
-     * @param storable Indica si el producto es almacenable.
-     * @param maxStock La cantidad máxima de stock para el producto.
-     * @param price El precio del producto.
+     * @param storable    Indica si el producto es almacenable.
+     * @param maxStock    La cantidad máxima de stock para el producto.
+     * @param price       El precio del producto.
      */
     public Product(int id, String name, String description, boolean storable, Integer maxStock, Double price) {
         this.id = id;

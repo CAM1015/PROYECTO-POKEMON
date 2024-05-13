@@ -178,7 +178,7 @@ public class MenuController implements Initializable {
 
             Stage Newstage = new Stage();
 
-            FXMLLoader fxmlLoader = new FXMLLoader(SplashApplication.class.getResource("es/cesur/progprojectpok/view/login-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(SplashApplication.class.getResource("/es/cesur/progprojectpok/view/login-view.fxml"));
             Scene scene = null;
             scene = new Scene(fxmlLoader.load(), 736, 746);
             Newstage.setTitle("LogIn");
