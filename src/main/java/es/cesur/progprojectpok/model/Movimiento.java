@@ -1,6 +1,8 @@
 package es.cesur.progprojectpok.model;
 
 import java.util.LinkedList;
+import javafx.collections.ObservableList;
+
 
 public abstract class Movimiento {
     private int idMovimiento;

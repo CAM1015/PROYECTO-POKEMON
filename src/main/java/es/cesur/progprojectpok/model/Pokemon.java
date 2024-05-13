@@ -1,5 +1,9 @@
 package es.cesur.progprojectpok.model;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.ObservableList;
+
 import java.util.LinkedList;
 
 public class Pokemon {
@@ -22,7 +26,7 @@ public class Pokemon {
 
     private int fertilidad;
     private boolean sexo;
-    static LinkedList<Movimiento> movimientos;
+    static ObservableList<Movimiento> movimientos;
     static Tipo tipo1;
     static Tipo tipo2;
     private int nivelEvolucion;
@@ -141,7 +145,7 @@ public class Pokemon {
     public Pokemon(int idPokemon, int numPokedex, String nombre, String mote, int nivel, int experiencia,
                    int vitalidad, int vitalidadActual, int ataque, int ataqueEspecial, int defensa, int defensaEspecial,
                    int velocidad, int estamina, int estaminaActual, int fertilidad, boolean sexo,
-                   LinkedList<Movimiento> movimientos , Tipo tipo1, Tipo tipo2, int nivelEvolucion,
+                   ObservableList<Movimiento> movimientos , Tipo tipo1, Tipo tipo2, int nivelEvolucion,
                    String estado, Objeto objeto, String imgFrontal, String imgTrasera) {
         super();
         this.idPokemon = idPokemon;
@@ -284,10 +288,10 @@ public class Pokemon {
         this.estado = estado;
     }
 
-    public static LinkedList<Movimiento> getMovimientos() {
+    public static ObservableList<Movimiento> getMovimientos() {
         return movimientos;
     }
-    public void setMovimientos(LinkedList<Movimiento> movimientos) {
+    public void setMovimientos(ObservableList<Movimiento> movimientos) {
         this.movimientos = movimientos;
     }
 
@@ -356,4 +360,9 @@ public class Pokemon {
         this.nivelEvolucion = nivelEvolucion;
     }
 
+
+
+    public IntegerProperty vitalidadProperty() {
+        return new SimpleIntegerProperty(this, "vitalidad", vitalidad);
+    }
 }
