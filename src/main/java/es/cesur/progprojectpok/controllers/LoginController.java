@@ -14,10 +14,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import javax.swing.text.html.ImageView;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -57,49 +54,69 @@ public class LoginController implements Initializable {
     private Label lblUsername;
 
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        lblError.setVisible(false);
+        lblErrorExistencia.setVisible(false);
+        lblRegistro.setVisible(false);
+    }
+
 
     @FXML
     public void onSignUpClick(ActionEvent event) {
+
+        lblError.setVisible(false);
+        lblErrorExistencia.setVisible(false);
+        lblRegistro.setVisible(false);
+
         try {
-            String EnteredUsername = txtFieldUsername.getText();
-            String EnteredPassword = passField.getText();
+            String enteredUsername = txtFieldUsername.getText().toLowerCase();
+            String enteredPassword = passField.getText();
 
             Connection connection = DBConnection.getConnection();
-            String sql="SELECT PASS, NOM_ENTRENADOR FROM ENTRENADOR";
+            String sqlCheckUser = "SELECT NOM_ENTRENADOR FROM ENTRENADOR WHERE NOM_ENTRENADOR = ?";
+            PreparedStatement preparedStatementCheckUser = connection.prepareStatement(sqlCheckUser);
+            preparedStatementCheckUser.setString(1, enteredUsername);
 
-            try {
-                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatementCheckUser.executeQuery();
 
-                ResultSet resultSet = preparedStatement.executeQuery();
-                while(resultSet.next()){
-                    String PASS = resultSet.getString("PASS");
-                    String NOM_ENTRENADOR = resultSet.getString("NOM_ENTRENADOR");
+            if (resultSet.next()) {
+                System.out.println("Este usuario ya existe.");
+                lblErrorExistencia.setText("Este usuario ya existe.");
+                lblErrorExistencia.setVisible(true);
+            } else {
+                String sqlSelectMaxId = "SELECT MAX(ID_ENTRENADOR) FROM ENTRENADOR";
+                Statement statement = connection.createStatement();
+                ResultSet resultSet2 = statement.executeQuery(sqlSelectMaxId);
 
-                    System.out.println(PASS + " " + NOM_ENTRENADOR);
-
-
-                    if (EnteredUsername.equals(NOM_ENTRENADOR)) {
-                        System.out.println("Este usuario ya existe.");
-                        lblErrorExistencia.setText("Este usuario ya existe.");
-                        lblErrorExistencia.setVisible(true);
-                        break;
-
-                    } else {
-                        String sql2 = ("INSERT INTO `ENTRENADOR`(`NOM_ENTRENADOR`, `PASS`, `POKEDOLLARS`) VALUES ('" + EnteredUsername + "','" + EnteredPassword + "', 5000)");
-                        PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
-                        int result = preparedStatement2.executeUpdate();
-
-                        System.out.println("Usuario registrado con exito");
-                        lblRegistro.setText("Usuario registrado con exito");
-                        lblRegistro.setVisible(true);
-                        break;
-                    }
+                int lastId = 0;
+                if (resultSet2.next()) {
+                    lastId = resultSet2.getInt(1);
                 }
-            } catch (SQLException e) {
-                System.err.println("LoginController - start - error al preparar la sentencia SQL");
+
+                int newId = lastId + 1;
+
+                String sqlInsert = "INSERT INTO ENTRENADOR (ID_ENTRENADOR, NOM_ENTRENADOR, PASS, POKEDOLLARS) VALUES (?, ?, ?, 5000)";
+                PreparedStatement preparedStatementInsert = connection.prepareStatement(sqlInsert);
+                preparedStatementInsert.setInt(1, newId);
+                preparedStatementInsert.setString(2, enteredUsername);
+                preparedStatementInsert.setString(3, enteredPassword);
+
+                preparedStatementInsert.executeUpdate();
+
+                System.out.println("Usuario registrado correctamente.");
+                lblRegistro.setText("Usuario registrado correctamente.");
+                lblRegistro.setVisible(true);
             }
+
+
+            resultSet.close();
+            preparedStatementCheckUser.close();
+            connection.close();
+        } catch (SQLException e) {
+            System.err.println("Error al realizar la operación en la base de datos: " + e.getMessage());
         } catch (NullPointerException e) {
-            System.out.println("LoginController NullPointerException al Conectar Pantallas");
+            System.out.println("NullPointerException al Conectar Pantallas");
         }
     }
 
@@ -108,6 +125,9 @@ public class LoginController implements Initializable {
     @FXML
     public void onLogInClick(ActionEvent event) {
 
+        lblError.setVisible(false);
+        lblErrorExistencia.setVisible(false);
+        lblRegistro.setVisible(false);
 
         if (txtFieldUsername.getText().isEmpty()) {
             lblError.setText("Usuario o contraseña incorrectos.");
@@ -143,7 +163,7 @@ public class LoginController implements Initializable {
                     Stage loginStage = (Stage) btnLogIn.getScene().getWindow();
                     loginStage.close();
 
-                    FXMLLoader fxmlLoader = new FXMLLoader(SplashApplication.class.getResource("es/cesur/progprojectpok/view/menu-view.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(SplashApplication.class.getResource("/es/cesur/progprojectpok/view/menu-view.fxml"));
                     Scene scene = new Scene(fxmlLoader.load(), 751, 475);
                     Stage primaryStage = new Stage();
                     primaryStage.setTitle("Menu");
@@ -164,10 +184,7 @@ public class LoginController implements Initializable {
 
         }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
 
-    }
 
 
 }

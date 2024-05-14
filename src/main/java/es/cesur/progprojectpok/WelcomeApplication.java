@@ -1,24 +1,16 @@
 package es.cesur.progprojectpok;
 
-import es.cesur.progprojectpok.daos.UserDAOJDBC;
-import es.cesur.progprojectpok.database.DBConnection;
-import es.cesur.progprojectpok.managers.UserManager;
-import es.cesur.progprojectpok.model.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
-public class HelloApplication extends Application {
+public class WelcomeApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-
+/*
         // Obtener la conexión con MySQL
         Connection connection = DBConnection.getConnection();
 
@@ -61,7 +53,7 @@ public class HelloApplication extends Application {
 
 
 
-
+*/
 
 /*
         UserManager userManager = new UserManager();
@@ -87,8 +79,8 @@ public class HelloApplication extends Application {
         userDAOJDBC.update(user);*/
 
 
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("view/hello-view2.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 824, 827);
+        FXMLLoader fxmlLoader = new FXMLLoader(WelcomeApplication.class.getResource("view/menu-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 751, 475);
         stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();

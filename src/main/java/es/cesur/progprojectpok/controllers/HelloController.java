@@ -1,6 +1,6 @@
 package es.cesur.progprojectpok.controllers;
 
-import es.cesur.progprojectpok.HelloApplication;
+import es.cesur.progprojectpok.WelcomeApplication;
 import es.cesur.progprojectpok.ImageData;
 import es.cesur.progprojectpok.database.DBConnection;
 import es.cesur.progprojectpok.model.Product;
@@ -15,7 +15,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -225,7 +224,7 @@ public class HelloController implements Initializable {
         // Obtener el escenario (stage) de uno de los componentes de esta vista
         Stage stageAnterior = (Stage) welcomeText.getScene().getWindow();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("view/login-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(WelcomeApplication.class.getResource("view/login-view.fxml"));
         Scene scene = null;
         Stage newStage = new Stage();
         try {
