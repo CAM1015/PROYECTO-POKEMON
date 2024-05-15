@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.cesur.progprojectpok.controllers.CapturaController">
    <children>
+      <ImageView fitHeight="480.0" fitWidth="776.0">
+         <image>
+            <Image url="@../images/captura-fondo.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnCapturar" layoutX="318.0" layoutY="389.0" mnemonicParsing="false" onAction="#onCapturarClick" prefHeight="52.0" prefWidth="102.0" text="Capturar" />
+      <Button fx:id="btnGenerarPokemonAleatorio" layoutX="287.0" layoutY="357.0" mnemonicParsing="false" onAction="#onGenerarPokemonAleatorioClick" text="Generar Pokemon Aleatorio" />
+      <Label fx:id="lblNombrePokemonSalvaje" layoutX="226.0" layoutY="165.0" opacity="0.0" text="Nombre Pokemon Salvaje" textFill="WHITE" />
+      <Label fx:id="lblCapturaResultado" layoutX="221.0" layoutY="34.0" opacity="0.0" prefHeight="64.0" prefWidth="147.0" text="lblCapturaResultado" textAlignment="JUSTIFY" />
+      <ImageView fx:id="imagenPokemon" fitHeight="200.0" fitWidth="200.0" layoutX="271.0" layoutY="108.0">
+         <image>
+         </image>
+      </ImageView>
+      <Button fx:id="btnVolver" layoutX="54.0" layoutY="53.0" mnemonicParsing="false" onAction="#onVolverBtnClick" text="Volver" />
    </children>
 </AnchorPane>

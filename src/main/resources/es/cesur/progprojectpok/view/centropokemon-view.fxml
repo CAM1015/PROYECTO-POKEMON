@@ -1,37 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.cesur.progprojectpok.controllers.CentroPokemonController">
-    <children>
-      <ImageView fitHeight="503.0" fitWidth="1005.0" layoutX="-137.0" layoutY="-25.0" opacity="0.49">
+   <children>
+      <ImageView fitHeight="486.0" fitWidth="971.0" layoutX="-115.0" opacity="0.65">
          <image>
             <Image url="@../images/fondo-centropokemon.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="651.0" fitWidth="291.0" layoutX="342.0" layoutY="57.0">
+      <ImageView fitHeight="684.0" fitWidth="308.0" layoutX="328.0" layoutY="37.0">
          <image>
             <Image url="@../images/Nurse_Joy.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="94.0" fitWidth="167.0" layoutX="573.0" layoutY="27.0">
+      <ImageView fitHeight="92.0" fitWidth="167.0" layoutX="568.0" layoutY="22.0">
          <image>
             <Image url="@../images/speech-bubble-centropokemon.png" />
          </image>
       </ImageView>
-        <TableView fx:id="pokemonTableView" layoutX="-3.0" prefHeight="483.0" prefWidth="298.0">
-            <columns>
-                <TableColumn fx:id="imageColumn" prefWidth="149.1732575893402" text="Pokemon" />
-                <TableColumn fx:id="moteColumn" prefWidth="81.82672882080078" text="Mote" />
-                <TableColumn fx:id="vitalidadColumn" prefWidth="50.35975646972656" text="Vitalidad" />
-            </columns>
-        </TableView>
-        <Button fx:id="btnVolver" layoutX="652.0" layoutY="412.0" mnemonicParsing="false" onAction="#onVolverBtnClick" text="Volver" />
-        <Button fx:id="btnCurar" layoutX="613.0" layoutY="45.0" mnemonicParsing="false" onAction="#onCurarBtnClick" prefHeight="23.0" prefWidth="86.0" text="¡Curar!" />
-    </children>
+      <Button fx:id="btnCurar" layoutX="610.0" layoutY="34.0" mnemonicParsing="false" onAction="#onCurarBtnClick" prefHeight="38.0" prefWidth="83.0" text="¡Curar!" />
+      <Button fx:id="btnVolver" layoutX="43.0" layoutY="18.0" mnemonicParsing="false" onAction="#onVolverBtnClick" text="Volver" />
+      <FlowPane fx:id="pokemonFlowPane" layoutX="9.0" layoutY="76.0" prefHeight="353.0" prefWidth="314.0" style="-fx-background-color: linear-gradient(#686868 0%, #232723 25%, #373837 75%, #757575 100%),         linear-gradient(#020b02, #3a3a3a),         linear-gradient(#9d9e9d 0%, #6b6a6b 20%, #343534 80%, #242424 100%),         linear-gradient(#8a8a8a 0%, #6b6a6b 20%, #343534 80%, #262626 100%),         linear-gradient(#777777 0%, #606060 50%, #505250 51%, #2a2b2a 100%); -fx-background-insets: 0,1,4,5,6; -fx-padding: 15 30 15 30; -fx-background-radius: 9,8,5,4,3; -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);" />
+   </children>
 </AnchorPane>

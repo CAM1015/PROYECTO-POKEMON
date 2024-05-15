@@ -14,103 +14,36 @@ import java.util.ResourceBundle;
 
 public class CrianzaController implements Initializable {
 
-    /**
-     * Called to initialize a controller after its root element has been
-     * completely processed.
-     *
-     * @param location  The location used to resolve relative paths for the root object, or
-     *                  {@code null} if the location is not known.
-     * @param resources The resources used to localize the root object, or {@code null} if
-     *                  the root object was not localized.
-     */
 
     @FXML
-    private Button btnEquipo;
-
-    @FXML
-    private Button btnCombate;
-
-    @FXML
-    private Button btnCaptura;
-
-    @FXML
-    private Button btnCrianza;
-
-    @FXML
-    private Button btnCentroPokemon;
-
-    @FXML
-    private Button btnEntrenamiento;
-
-    @FXML
-    private Button btnLogOut;
+    private Button btnVolver;
 
 
     @FXML
-    protected void onCombateBtnClick() {
-        try {
-            Stage Newstage = new Stage();
-
-            FXMLLoader fxmlLoader = new FXMLLoader(SplashApplication.class.getResource("view/equipo-view.fxml"));
-            Scene scene = null;
-            scene = new Scene(fxmlLoader.load(), 751, 475);
-            Newstage.setTitle("Combate");
-            Newstage.setScene(scene);
-            Newstage.show();
-
-            Stage loginStage = (Stage) btnEquipo.getScene().getWindow();
-            loginStage.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @FXML
-    protected void onEquipoBtnClick() {
-        try {
-            Stage Newstage = new Stage();
-
-            FXMLLoader fxmlLoader = new FXMLLoader(SplashApplication.class.getResource("view/equipo-view.fxml"));
-            Scene scene = null;
-            scene = new Scene(fxmlLoader.load(), 751, 475);
-            Newstage.setTitle("Equipo");
-            Newstage.setScene(scene);
-            Newstage.show();
-
-            Stage loginStage = (Stage) btnEquipo.getScene().getWindow();
-            loginStage.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @FXML
-    protected void onLogOutClick() {
+    protected void onVolverBtnClick() {
         try {
 
             Stage Newstage = new Stage();
 
-            FXMLLoader fxmlLoader = new FXMLLoader(SplashApplication.class.getResource("es/cesur/progprojectpok/view/login-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(SplashApplication.class.getResource("es/cesur/progprojectpok/view/menu-view.fxml"));
             Scene scene = null;
             scene = new Scene(fxmlLoader.load(), 736, 746);
-            Newstage.setTitle("LogIn");
+            Newstage.setTitle("Menu");
             Newstage.setScene(scene);
             Newstage.show();
 
-            Stage loginStage = (Stage) btnLogOut.getScene().getWindow();
+            Stage loginStage = (Stage) btnVolver.getScene().getWindow();
             loginStage.close();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Cargar datos del usuario si seleccionó el remember me
 
 
     }

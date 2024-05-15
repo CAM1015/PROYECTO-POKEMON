@@ -1,6 +1,6 @@
 package es.cesur.progprojectpok.controllers;
 
-import es.cesur.progprojectpok.HelloApplication;
+import es.cesur.progprojectpok.WelcomeApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +23,7 @@ public class Menu2Controller {
         System.out.println("Botón pulsado.");
 
         Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("view/hello-view2.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(WelcomeApplication.class.getResource("view/hello-view2.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 824, 827);
         stage.setTitle("Login");
         stage.setScene(scene);

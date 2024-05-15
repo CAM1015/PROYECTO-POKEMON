@@ -79,7 +79,7 @@ public class WelcomeApplication extends Application {
         userDAOJDBC.update(user);*/
 
 
-        FXMLLoader fxmlLoader = new FXMLLoader(WelcomeApplication.class.getResource("view/menu-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(WelcomeApplication.class.getResource("view/login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 751, 475);
         stage.setTitle("Login");
         stage.setScene(scene);

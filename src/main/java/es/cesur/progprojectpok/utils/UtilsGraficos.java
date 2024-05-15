@@ -1,6 +1,6 @@
 package es.cesur.progprojectpok.utils;
 
-import es.cesur.progprojectpok.HelloApplication;
+import es.cesur.progprojectpok.WelcomeApplication;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
@@ -94,7 +94,7 @@ public class UtilsGraficos {
     }
     public static Stage crearVistaGrafica(String pathView, String title, int width, int height, double duration) {
         Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(pathView));
+        FXMLLoader fxmlLoader = new FXMLLoader(WelcomeApplication.class.getResource(pathView));
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), width, height);
@@ -117,7 +117,7 @@ public class UtilsGraficos {
 
         Stage stage = new Stage();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(pathView));
+        FXMLLoader fxmlLoader = new FXMLLoader(WelcomeApplication.class.getResource(pathView));
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), width, height);

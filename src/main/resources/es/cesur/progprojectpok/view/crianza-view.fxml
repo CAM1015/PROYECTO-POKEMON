@@ -13,5 +13,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.cesur.progprojectpok.controllers.CrianzaController">
    <children>
+      <Button fx:id="btnVolver" layoutX="54.0" layoutY="53.0" mnemonicParsing="false" onAction="#onVolverBtnClick" text="Volver" />
    </children>
 </AnchorPane>
