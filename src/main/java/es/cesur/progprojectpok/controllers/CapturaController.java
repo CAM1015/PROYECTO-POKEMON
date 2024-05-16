@@ -13,6 +13,8 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.animation.PauseTransition;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,7 +41,10 @@ public class CapturaController implements Initializable {
     private Button btnGenerarPokemonAleatorio;
 
     @FXML
-    private Label lblCapturaResultado;
+    private Label lblPokemonCapturado;
+
+    @FXML
+    private Label lblPokemonNoCapturado;
 
     @FXML
     private Label lblNombrePokemonSalvaje;
@@ -50,6 +55,9 @@ public class CapturaController implements Initializable {
     @FXML
     private Button btnAsignarMote;
 
+    @FXML
+    private Label lblMoteAsignado;
+
     private int numPokedexGenerado;
 
     String nombrePokemonGenerado = null;
@@ -58,7 +66,7 @@ public class CapturaController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        lblCapturaResultado.setVisible(false);
+
     }
     @FXML
     protected void onVolverBtnClick() {
@@ -190,8 +198,11 @@ public class CapturaController implements Initializable {
                         }
                     }
                     System.out.println("¡Pokemon capturado!");
-                    lblCapturaResultado.setText("¡Pokemon capturado!");
-                    lblCapturaResultado.setVisible(true);
+                    lblPokemonCapturado.setText("¡Pokemon capturado!");
+                    lblPokemonCapturado.setVisible(true);
+                    PauseTransition visiblePause = new PauseTransition(Duration.seconds(3));
+                    visiblePause.setOnFinished(event -> lblPokemonCapturado.setVisible(false));
+                    visiblePause.play();
 
 
                 } catch (SQLException e) {
@@ -199,8 +210,11 @@ public class CapturaController implements Initializable {
                 }
             } else {
                 System.out.println("El pokemon ha escapado :(");
-                lblCapturaResultado.setText("El pokemon ha escapado :(");
-                lblCapturaResultado.setVisible(true);
+                lblPokemonNoCapturado.setText("El pokemon ha escapado :(");
+                lblPokemonNoCapturado.setVisible(true);
+                PauseTransition visiblePause = new PauseTransition(Duration.seconds(3));
+                visiblePause.setOnFinished(event -> lblPokemonNoCapturado.setVisible(false));
+                visiblePause.play();
 
             }
                 }
@@ -246,6 +260,11 @@ public class CapturaController implements Initializable {
                     int rowsAffected = updateStatement.executeUpdate();
 
                     if (rowsAffected > 0) {
+                        lblMoteAsignado.setText("Mote asignado correctamente.");
+                        lblMoteAsignado.setVisible(true);
+                        PauseTransition visiblePause = new PauseTransition(Duration.seconds(3));
+                        visiblePause.setOnFinished(event -> lblMoteAsignado.setVisible(false));
+                        visiblePause.play();
                         System.out.println("Mote asignado al Pokémon correctamente.");
                     } else {
                         System.out.println("Error al asignar mote al Pokémon.");
