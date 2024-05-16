@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -20,6 +21,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -44,6 +46,9 @@ public class CapturaController implements Initializable {
 
     @FXML
     private ImageView imagenPokemon;
+
+    @FXML
+    private Button btnAsignarMote;
 
     private int numPokedexGenerado;
 
@@ -201,7 +206,57 @@ public class CapturaController implements Initializable {
                 }
 
 
+    @FXML
+    public void onAsignarMoteClick(ActionEvent actionEvent) {
+        int ultimoIdPokemon = 0;
 
+        String query = "SELECT MAX(ID_POKEMON) FROM pokemon";
 
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            if (resultSet.next()) {
+                ultimoIdPokemon = resultSet.getInt(1);
+
+                if (ultimoIdPokemon == 0) {
+                    System.out.println("No hay ningún Pokémon capturado para asignarle un mote.");
+                    return;
+                }
+            } else {
+                System.out.println("No se pudo obtener el último ID_POKEMON de la base de datos.");
+                return;
+            }
+
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.setTitle("Asignar Mote");
+            dialog.setHeaderText("Por favor, ingresa el mote para el Pokémon capturado:");
+            dialog.setContentText("Mote:");
+
+            final int idPokemonFinal = ultimoIdPokemon;
+
+            Optional<String> result = dialog.showAndWait();
+            result.ifPresent(mote -> {
+                try (Connection updateConnection = DBConnection.getConnection();
+                     PreparedStatement updateStatement = updateConnection.prepareStatement("UPDATE pokemon SET MOTE = ? WHERE ID_POKEMON = ?")) {
+
+                    updateStatement.setString(1, mote);
+                    updateStatement.setInt(2, idPokemonFinal);
+
+                    int rowsAffected = updateStatement.executeUpdate();
+
+                    if (rowsAffected > 0) {
+                        System.out.println("Mote asignado al Pokémon correctamente.");
+                    } else {
+                        System.out.println("Error al asignar mote al Pokémon.");
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
