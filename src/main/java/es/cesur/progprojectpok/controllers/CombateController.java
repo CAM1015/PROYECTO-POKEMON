@@ -193,9 +193,10 @@ public class CombateController implements Initializable {
     private void cargarPokemonDeCaja(int caja) {
         pokemonDeCaja.clear(); // Limpiar la lista de Pokémon cargados anteriormente
         Connection connection = DBConnection.getConnection();
-        String sql = "SELECT p.*, px.NOM_POKEMON, px.IMAGEN FROM pokemon p " +
-                "JOIN pokedex px ON p.NUM_POKEDEX = px.NUM_POKEDEX WHERE p.caja = ?";
-
+        String sql = "SELECT p.*, px.NOM_POKEMON, px.IMAGEN " +
+                "FROM pokemon p " +
+                "JOIN pokedex px ON p.NUM_POKEDEX = px.NUM_POKEDEX " +
+                "WHERE p.caja = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, caja);
@@ -224,6 +225,9 @@ public class CombateController implements Initializable {
                     continue; // Saltar este Pokémon si hay datos nulos
                 }
 
+                List<Movimientos> movimientos = cargarMovimientosDePokemonSeleccionado(numPokedex);
+
+
                 Pokemon pokemon = new Pokemon(idPokemon, mote, nivel, vitalidad, numPokedex, nombrePokemon, imagen);
                 pokemonDeCaja.add(pokemon);
 
@@ -245,7 +249,7 @@ public class CombateController implements Initializable {
 
         List<String> choices = new ArrayList<>();
         for (Pokemon pokemon : pokemonDeCaja) {
-            String displayName = pokemon.getNombre() != null ? pokemon.getNombre() : "null";
+            String displayName = pokemon.getNomPokemon() != null ? pokemon.getNomPokemon() : "null";
             int displayNivel = pokemon.getNivel();
             choices.add(displayName + " (Nivel: " + displayNivel + ")");
         }
@@ -263,7 +267,7 @@ public class CombateController implements Initializable {
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(pokemonNombre -> {
             for (Pokemon pokemon : pokemonDeCaja) {
-                if ((pokemon.getNombre() + " (Nivel: " + pokemon.getNivel() + ")").equals(pokemonNombre)) {
+                if ((pokemon.getNomPokemon() + " (Nivel: " + pokemon.getNivel() + ")").equals(pokemonNombre)) {
                     actualizarInterfazConPokemon(pokemon);
                     break;
                 }
@@ -271,7 +275,7 @@ public class CombateController implements Initializable {
         });
     }
     private void actualizarInterfazConPokemon(Pokemon pokemon) {
-        lblNombre.setText(pokemon.getNombre());
+        lblNombre.setText(pokemon.getNomPokemon());
         lblNivel.setText("Nivel: " + pokemon.getNivel());
         lblVitalidad.setText("HP: " + pokemon.getVitalidad());
 
@@ -281,10 +285,113 @@ public class CombateController implements Initializable {
     }
 
 
+    private List<Movimientos> cargarMovimientosDePokemonSeleccionado(int numPokedex) {
+        List<Movimientos> movimientos = new ArrayList<>();
+        Connection connection = DBConnection.getConnection();
+        String sql = "SELECT M.* FROM MOVIMIENTOS M " +
+                "JOIN POKEDEX_MOVIMIENTOS PM ON M.ID_MOVIMIENTO = PM.ID_MOVIMIENTO " +
+                "WHERE PM.NUM_POKEDEX = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, numPokedex);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int idMovimiento = resultSet.getInt("ID_MOVIMIENTO");
+                String nombreMovimiento = resultSet.getString("NOMBRE_MOV");
+                int potencia = resultSet.getInt("POTENCIA");
+                String tipo = resultSet.getString("TIPO");
+                String estado = resultSet.getString("ESTADO");
+                int quita = resultSet.getInt("QUITA");
+                int turnos = resultSet.getInt("TURNOS");
+                int nivelAprendizaje = resultSet.getInt("NIVEL_APRENDIZAJE");
+
+                // Crear objeto Movimientos con los datos recuperados de la base de datos
+                Movimientos movimiento = new Movimientos(idMovimiento, nombreMovimiento, potencia, tipo, estado, quita, turnos, nivelAprendizaje);
+
+                // Aquí puedes procesar cada movimiento obtenido según tus necesidades
+                System.out.println("Movimiento: " + nombreMovimiento + ", Potencia: " + potencia + ", Tipo: " + tipo + ", Estado: " + estado + ", Quita: " + quita + ", Turnos: " + turnos + ", Nivel de aprendizaje: " + nivelAprendizaje);
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return movimientos;
+
+    }
+
     @FXML
     private void onSeleccionarAtaqueBtnClick() {
 
+        // Verificar si se ha seleccionado un Pokémon
+        if (lblNombre.getText().isEmpty()) {
+            System.out.println("Primero debes seleccionar un Pokémon.");
+            return;
+        }
+
+        // Obtener el Pokémon seleccionado
+        Pokemon pokemonSeleccionado = null;
+        for (Pokemon pokemon : pokemonDeCaja) {
+            if (pokemon.getNomPokemon().equals(lblNombre.getText())) {
+                pokemonSeleccionado = pokemon;
+                break;
+            }
+        }
+
+        if (pokemonSeleccionado == null) {
+            System.out.println("Error: No se pudo encontrar el Pokémon seleccionado.");
+            return;
+        }
+
+        // Mostrar el menú emergente con los movimientos del Pokémon seleccionado
+        cargarMovimientosDePokemonSeleccionado(pokemonSeleccionado.getNumPokedex());
+        mostrarMenuMovimientos(pokemonSeleccionado);
     }
+
+    private void mostrarMenuMovimientos(Pokemon pokemon) {
+        // Crear una lista de nombres de movimientos para mostrar en el diálogo de selección
+        List<Movimientos> movimientos = pokemon.getMovimientos();
+        if (movimientos == null || movimientos.isEmpty()) {
+            System.out.println("El Pokémon no tiene movimientos.");
+            return;
+        }
+
+        List<String> nombresMovimientos = new ArrayList<>();
+        for (Movimientos movimiento : movimientos) {
+            nombresMovimientos.add(movimiento.getNombreMovimiento());
+        }
+
+        // Mostrar el diálogo de selección de movimientos
+        ChoiceDialog<String> dialog = new ChoiceDialog<>(nombresMovimientos.get(0), nombresMovimientos);
+        dialog.setTitle("Seleccionar Ataque");
+        dialog.setHeaderText("Seleccionar un Ataque para " + pokemon.getNomPokemon());
+        dialog.setContentText("Elige un Ataque:");
+
+        // Obtener la selección del usuario
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(nombreMovimiento -> {
+            // Buscar el movimiento seleccionado por su nombre
+            Movimientos movimientoSeleccionado = null;
+            for (Movimientos movimiento : pokemon.getMovimientos()) {
+                if (movimiento.getNombreMovimiento().equals(nombreMovimiento)) {
+                    movimientoSeleccionado = movimiento;
+                    break;
+                }
+            }
+
+            if (movimientoSeleccionado == null) {
+                System.out.println("Error: No se pudo encontrar el movimiento seleccionado.");
+                return;
+            }
+
+            // Aquí puedes almacenar el movimiento seleccionado en una variable para su posterior uso en la lógica de ataque
+            System.out.println("Movimiento seleccionado: " + movimientoSeleccionado);
+            // Guardar el movimiento seleccionado en una variable miembro del controlador o utilizarlo directamente en la lógica de ataque
+        });
+    }
+
 
     @FXML
     private void onAtacarBtnClick() {

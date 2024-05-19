@@ -1,20 +1,42 @@
 package es.cesur.progprojectpok.controllers;
-import es.cesur.progprojectpok.controllers.CentroPokemonController;
-import es.cesur.progprojectpok.controllers.SesionController;
+import es.cesur.progprojectpok.daos.PokemonDAO;
+import es.cesur.progprojectpok.model.Pokemon;
+import es.cesur.progprojectpok.model.Movimientos;
+import javafx.collections.ObservableList;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+import static es.cesur.progprojectpok.database.ConfigDB.*;
 
 public class mainPruebas {
 
     public static void main(String[] args) {
-        // Simular inicio de sesión y obtener el ID del entrenador
-        int idEntrenador = 1; // ID de ejemplo
+        try {
+            // Conectar a la base de datos
+            Connection connection = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
 
-        // Establecer el ID del entrenador en el controlador de sesión
-        SesionController.getInstance().setEntrenadorId(idEntrenador);
+            // Crear una instancia de PokemonDAO
+            PokemonDAO pokemonDAO = new PokemonDAO(connection);
 
-        // Crear una instancia del controlador del centro Pokémon
-        CentroPokemonController centroPokemonController = new CentroPokemonController();
+            // Probar obtener un Pokémon por su ID
+            int pokemonId = 1; // Cambia este valor a un ID válido en tu base de datos
+            Pokemon pokemon = pokemonDAO.getPokemonById(pokemonId);
 
-        // Ejecutar el método para mostrar los Pokémon del equipo
-        centroPokemonController.mostrarPokemonEquipo();
+            if (pokemon != null) {
+                System.out.println("Pokémon encontrado: " + pokemon.getMote());
+                System.out.println("Num Pokedex: " + pokemon.getNumPokedex());
+                System.out.println("ID Entrenador: " + pokemon.getIdEntrenador());
+                // Continúa imprimiendo otros atributos si es necesario
+            } else {
+                System.out.println("No se encontró un Pokémon con el ID: " + pokemonId);
+            }
+
+            // Cerrar la conexión
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
