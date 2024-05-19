@@ -152,7 +152,7 @@ public class CapturaController implements Initializable {
                     char sexo = (random.nextBoolean()) ? 'M' : 'F';
                     String estado = "";
                     int experiencia = random.nextInt(10) + 1;
-                    int vitalidad = random.nextInt(10) + 1;
+                    int vitalidad = 200;
                     int idObjeto = 0;
                     int nivel = random.nextInt(10) + 1;
 

@@ -23,7 +23,7 @@ public class Pokemon {
     private int defensa;
     private int defensaEspecial;
     private int velocidad;
-
+    private String imagen;
     private int fertilidad;
     private boolean sexo;
     static ObservableList<Movimiento> movimientos;
@@ -34,6 +34,9 @@ public class Pokemon {
     private Objeto objeto;
     private String imgFrontal;
     private String imgTrasera;
+
+    private ObservableList<Movimientos> movimientosNom;
+
 
 
     public Pokemon() {
@@ -61,6 +64,7 @@ public class Pokemon {
         this.objeto = null;
         this.imgFrontal = "";
         this.imgTrasera = "";
+        this.movimientosNom = null;
     }
 
     /**
@@ -146,7 +150,7 @@ public class Pokemon {
                    int vitalidad, int vitalidadActual, int ataque, int ataqueEspecial, int defensa, int defensaEspecial,
                    int velocidad, int estamina, int estaminaActual, int fertilidad, boolean sexo,
                    ObservableList<Movimiento> movimientos , Tipo tipo1, Tipo tipo2, int nivelEvolucion,
-                   String estado, Objeto objeto, String imgFrontal, String imgTrasera) {
+                   String estado, Objeto objeto, String imgFrontal, String imgTrasera, ObservableList<Movimientos> movimientosNom) {
         super();
         this.idPokemon = idPokemon;
         this.numPokedex = numPokedex;
@@ -171,6 +175,18 @@ public class Pokemon {
         this.objeto = objeto;
         this.imgFrontal = imgFrontal;
         this.imgTrasera = imgTrasera;
+        this.movimientosNom = movimientosNom;
+    }
+
+    // Constructor
+    public Pokemon(int idPokemon, String mote, int nivel, int vitalidad, int numPokedex, String nombre, String imagen) {
+        this.idPokemon = idPokemon;
+        this.mote = mote;
+        this.nivel = nivel;
+        this.vitalidad = vitalidad;
+        this.numPokedex = numPokedex;
+        this.nombre = nombre;
+        this.imagen = imagen;
     }
 
 
@@ -320,6 +336,14 @@ public class Pokemon {
         Pokemon.tipo2 = tipo2;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
     public int getNumPokedex() {
         return numPokedex;
     }
@@ -360,7 +384,13 @@ public class Pokemon {
         this.nivelEvolucion = nivelEvolucion;
     }
 
+    public ObservableList<Movimientos> getMovimientosNom() {
+        return movimientosNom;
+    }
 
+    public void setMovimientosNom(ObservableList<Movimientos> movimientosNom) {
+        this.movimientosNom = movimientosNom;
+    }
 
     public IntegerProperty vitalidadProperty() {
         return new SimpleIntegerProperty(this, "vitalidad", vitalidad);

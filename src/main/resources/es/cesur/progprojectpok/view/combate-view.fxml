@@ -1,17 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.cesur.progprojectpok.controllers.CombateController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="1019.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.cesur.progprojectpok.controllers.CombateController">
    <children>
-      <ImageView fitHeight="569.0" fitWidth="763.0" layoutY="-88.0">
+      <ImageView fitHeight="476.0" fitWidth="1022.0">
          <image>
-            <Image url="@../images/some_battle_backgrounds_by_princess_phoenix_ddfcwq4.png" />
+            <Image url="@../images/batalla-fondo.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnVolver" layoutX="54.0" layoutY="53.0" mnemonicParsing="false" onAction="#onVolverBtnClick" text="Volver" />
+      <ImageView fitHeight="153.0" fitWidth="471.0" layoutX="-30.0" layoutY="89.0">
+         <image>
+            <Image url="@../images/Ilustracion_sin_titulo2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="153.0" fitWidth="479.0" layoutX="574.0" layoutY="306.0">
+         <image>
+            <Image url="@../images/Ilustracion_sin_titulo.png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="-1.0" layoutY="476.0" prefHeight="205.0" prefWidth="1023.0" style="-fx-background-color: #D2F6DE; -fx-border-color: #455149; -fx-border-width: 8px;" />
+      <ImageView fitHeight="183.0" fitWidth="489.0" layoutX="528.0" layoutY="488.0">
+         <image>
+            <Image url="@../images/Ilustracion_sin_titulo4.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="196.0" fitWidth="515.0" layoutY="475.0">
+         <image>
+            <Image url="@../images/Ilustracion_sin_titulo3.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblAcciones" layoutX="600.0" layoutY="530.0" prefHeight="97.0" prefWidth="364.0" text="script de acciones">
+         <font>
+            <Font name="Rockwell" size="30.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnSeleccionarEquipo" layoutX="290.0" layoutY="520.0" mnemonicParsing="false" onAction="#onSeleccionarEquipoBtnClick" prefHeight="54.0" prefWidth="132.0" text="Seleccionar &#10;equipo" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnSeleccionarAtaque" layoutX="80.0" layoutY="520.0" mnemonicParsing="false" onAction="#onSeleccionarAtaqueBtnClick" prefHeight="54.0" prefWidth="132.0" text="Seleccionar &#10;ataque" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnAtacar" layoutX="80.0" layoutY="580.0" mnemonicParsing="false" onAction="#onAtacarBtnClick" prefHeight="45.0" prefWidth="125.0" text="Atacar">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnVolver" layoutX="877.0" layoutY="27.0" mnemonicParsing="false" onAction="#onVolverBtnClick" prefHeight="42.0" prefWidth="108.0" style="-fx-background-color: linear-gradient(#686868 0%, #232723 25%, #373837 75%, #757575 100%),               linear-gradient(#020b02, #3a3a3a),               linear-gradient(#9d9e9d 0%, #6b6a6b 20%, #343534 80%, #242424 100%),               linear-gradient(#8a8a8a 0%, #6b6a6b 20%, #343534 80%, #262626 100%),               linear-gradient(#777777 0%, #606060 50%, #505250 51%, #2a2b2a 100%);               -fx-background-insets: 0,1,4,5,6;               -fx-background-radius: 9,8,5,4,3;               -fx-padding: 15 30 15 30;               -fx-font-size: 15px;               -fx-font-weight: bold;               -fx-text-fill: white;               -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);" text="Volver" />
+      <Label fx:id="lblNombreRival" layoutX="26.0" layoutY="117.0" prefHeight="37.0" prefWidth="191.0" text="nombre">
+         <font>
+            <Font name="Rockwell" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblNombre" layoutX="689.0" layoutY="336.0" prefHeight="37.0" prefWidth="191.0" text="nombre">
+         <font>
+            <Font name="Rockwell" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblNivelRival" layoutX="174.0" layoutY="117.0" prefHeight="37.0" prefWidth="191.0">
+         <font>
+            <Font name="Rockwell" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblNivel" layoutX="828.0" layoutY="337.0" prefHeight="37.0" prefWidth="210.0">
+         <font>
+            <Font name="Rockwell" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblVitalidadRival" layoutX="14.0" layoutY="157.0" prefHeight="34.0" prefWidth="121.0">
+         <font>
+            <Font name="Rockwell" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblVitalidad" layoutX="680.0" layoutY="383.0" prefHeight="26.0" prefWidth="130.0">
+         <font>
+            <Font name="Rockwell" size="24.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imagenPokemonRival" fitHeight="242.0" fitWidth="293.0" layoutX="574.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imagenPokemon" fitHeight="242.0" fitWidth="293.0" layoutX="93.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="46.0" fitWidth="210.0" layoutX="805.0" layoutY="371.0">
+         <image>
+            <Image url="@../images/HPbar.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="45.0" fitWidth="210.0" layoutX="132.0" layoutY="151.0">
+         <image>
+            <Image url="@../images/HPbar.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnEncontrarRival" layoutX="359.0" layoutY="22.0" mnemonicParsing="false" onAction="#onEncontrarRivalBtnClick" prefHeight="65.0" prefWidth="226.0" style="-fx-background-color: linear-gradient(#686868 0%, #232723 25%, #373837 75%, #757575 100%),               linear-gradient(#020b02, #3a3a3a),               linear-gradient(#9d9e9d 0%, #6b6a6b 20%, #343534 80%, #242424 100%),               linear-gradient(#8a8a8a 0%, #6b6a6b 20%, #343534 80%, #262626 100%),               linear-gradient(#777777 0%, #606060 50%, #505250 51%, #2a2b2a 100%); -fx-background-insets: 0,1,4,5,6; -fx-background-radius: 9,8,5,4,3; -fx-padding: 15 30 15 30; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white; -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);" text="Encontrar rival">
+         <font>
+            <Font size="24.0" />
+         </font></Button>
+      <Button fx:id="btnSeleccionarPokemon" layoutX="291.0" layoutY="578.0" mnemonicParsing="false" onAction="#onSeleccionarPokemonBtnClick" prefHeight="54.0" prefWidth="132.0" text="Seleccionar &#10;pokemon" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

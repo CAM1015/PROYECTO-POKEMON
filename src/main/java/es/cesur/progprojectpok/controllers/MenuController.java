@@ -44,7 +44,7 @@ public class MenuController implements Initializable {
 
             FXMLLoader fxmlLoader = new FXMLLoader(SplashApplication.class.getResource("/es/cesur/progprojectpok/view/combate-view.fxml"));
             Scene scene = null;
-            scene = new Scene(fxmlLoader.load(), 751, 475);
+            scene = new Scene(fxmlLoader.load(), 1019, 674);
             Newstage.setTitle("Combate");
             Newstage.setScene(scene);
             Newstage.show();
